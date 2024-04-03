@@ -6,7 +6,7 @@
   
 */
 
-"SurveyView.Survey" = "Survey app";
+"SurveyView.Survey" = "Survey App";
 "SurveyView.Welcome" = "Welcome to Survey app";
 "SurveyView.Description" = "This app contains 2 screens and fetches survey's questions from an API.";
 "SurveyView.StartSurvey" = "Start survey";

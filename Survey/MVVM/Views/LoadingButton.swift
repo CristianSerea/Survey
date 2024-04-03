@@ -21,7 +21,7 @@ struct LoadingButton: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                Text(text)
+                Text(text.capitalized)
                     .fontWeight(.medium)
                     .foregroundColor(.white)
                     .padding()
@@ -43,6 +43,6 @@ struct LoadingButton: View {
 
 #Preview {
     return LoadingButton(isLoading: .constant(false),
-                         text: "Start survey", 
+                         text: LocalizableConstants.surveyViewStartSurvey, 
                          action: {})
 }

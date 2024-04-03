@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		942DC90A2BBD90DF007C5354 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 942DC9092BBD90DF007C5354 /* Launch Screen.storyboard */; };
 		9432EF4D2BBC357700EB6F25 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9432EF4C2BBC357700EB6F25 /* Question.swift */; };
 		9432EF4F2BBC358400EB6F25 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9432EF4E2BBC358400EB6F25 /* Answer.swift */; };
 		9432EF532BBC35DE00EB6F25 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9432EF522BBC35DE00EB6F25 /* NetworkManager.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		942DC9092BBD90DF007C5354 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		9432EF4C2BBC357700EB6F25 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		9432EF4E2BBC358400EB6F25 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		9432EF522BBC35DE00EB6F25 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				94A3BD192BBC2A9D00C07B3F /* Assets.xcassets */,
+				942DC9092BBD90DF007C5354 /* Launch Screen.storyboard */,
 				9432EF5A2BBC438900EB6F25 /* Constants */,
 				9432EF682BBD2E2A00EB6F25 /* Enumerations */,
 				9432EF6B2BBD2E7D00EB6F25 /* Extensions */,
@@ -359,6 +362,7 @@
 				94A3BD1D2BBC2A9D00C07B3F /* Preview Assets.xcassets in Resources */,
 				9432EF712BBD2F0300EB6F25 /* Localizable.strings in Resources */,
 				9432EF5F2BBC4A2800EB6F25 /* Questions.json in Resources */,
+				942DC90A2BBD90DF007C5354 /* Launch Screen.storyboard in Resources */,
 				94A3BD1A2BBC2A9D00C07B3F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,6 +583,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -608,6 +613,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -127,7 +127,7 @@ struct QuestionsView: View {
                 surveyViewModel.submittedAnswers.append(answer)
                 toast = Toast(toastStyle: .success,
                               title: LocalizableConstants.questionsViewSuccess)
-                if !surveyViewModel.isSurveyCompleted {
+                if surveyViewModel.canGoToNextQuestion && !surveyViewModel.isSurveyCompleted {
                     surveyViewModel.goToNextQuestion()
                     text = surveyViewModel.currentAnswer?.answer ?? ""
                 }

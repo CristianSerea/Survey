@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Survey
+
+  Created by Cristian Serea on 03.04.2024.
+  
+*/
+
+"SurveyView.Survey" = "Survey app";
+"SurveyView.Welcome" = "Welcome to Survey app";
+"SurveyView.Description" = "This app contains 2 screens and fetches survey's questions from an API.";
+"SurveyView.StartSurvey" = "Start survey";
+"SurveyView.Failure" = "There was an error while fetching your survey questions";
+
+"QuestionsView.Questions" = "Questions";
+"QuestionsView.Previous" = "Previous";
+"QuestionsView.Next" = "Next";
+"QuestionsView.QuestionsSubmitted" = "Questions submitted:";
+"QuestionsView.Type" = "Type your answer...";
+"QuestionsView.SubmitAnswer" = "Submit answer";
+"QuestionsView.AlreadySubmitted" = "Already submitted";
+"QuestionsView.Failure" = "There was an error while submitting your answer";
+"QuestionsView.Success" = "Your answer has been submitted";
+
+"ToastView.Retry" = "Retry";
+
+"AlertView.Congratulations" = "Congratulations!";
+"AlertView.Completed" = "You have completed all survey questions.";
+"AlertView.Done" = "Done";

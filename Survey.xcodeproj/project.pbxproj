@@ -23,6 +23,15 @@
 		9432EF712BBD2F0300EB6F25 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9432EF732BBD2F0300EB6F25 /* Localizable.strings */; };
 		9432EF762BBD424000EB6F25 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9432EF752BBD424000EB6F25 /* ToastView.swift */; };
 		9432EF782BBD4E6000EB6F25 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9432EF772BBD4E6000EB6F25 /* Toast.swift */; };
+		9487F6642BBD9C0300D311C6 /* ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9487F6632BBD9C0300D311C6 /* ModelsTests.swift */; };
+		9487F6662BBD9D8900D311C6 /* ViewModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9487F6652BBD9D8900D311C6 /* ViewModelsTests.swift */; };
+		9487F6682BBD9E8400D311C6 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9487F6672BBD9E8400D311C6 /* MockNetworkManager.swift */; };
+		9487F66B2BBE7CAC00D311C6 /* PreviewSnapshots in Frameworks */ = {isa = PBXBuildFile; productRef = 9487F66A2BBE7CAC00D311C6 /* PreviewSnapshots */; };
+		9487F66D2BBE7CAC00D311C6 /* PreviewSnapshotsTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 9487F66C2BBE7CAC00D311C6 /* PreviewSnapshotsTesting */; };
+		9487F66F2BBE7E7F00D311C6 /* SnapshotsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9487F66E2BBE7E7F00D311C6 /* SnapshotsTests.swift */; };
+		9487F6712BBE865B00D311C6 /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9487F6702BBE865B00D311C6 /* NavigationUITests.swift */; };
+		9487F6742BBE882700D311C6 /* IdentifierConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9487F6722BBE87C700D311C6 /* IdentifierConstants.swift */; };
+		9487F6752BBE8A6B00D311C6 /* IdentifierConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9487F6722BBE87C700D311C6 /* IdentifierConstants.swift */; };
 		94A3BD162BBC2A9D00C07B3F /* SurveyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A3BD152BBC2A9D00C07B3F /* SurveyApp.swift */; };
 		94A3BD182BBC2A9D00C07B3F /* SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A3BD172BBC2A9D00C07B3F /* SurveyView.swift */; };
 		94A3BD1A2BBC2A9D00C07B3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94A3BD192BBC2A9D00C07B3F /* Assets.xcassets */; };
@@ -66,6 +75,12 @@
 		9432EF722BBD2F0300EB6F25 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9432EF752BBD424000EB6F25 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		9432EF772BBD4E6000EB6F25 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		9487F6632BBD9C0300D311C6 /* ModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsTests.swift; sourceTree = "<group>"; };
+		9487F6652BBD9D8900D311C6 /* ViewModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelsTests.swift; sourceTree = "<group>"; };
+		9487F6672BBD9E8400D311C6 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		9487F66E2BBE7E7F00D311C6 /* SnapshotsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotsTests.swift; sourceTree = "<group>"; };
+		9487F6702BBE865B00D311C6 /* NavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITests.swift; sourceTree = "<group>"; };
+		9487F6722BBE87C700D311C6 /* IdentifierConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierConstants.swift; sourceTree = "<group>"; };
 		94A3BD122BBC2A9D00C07B3F /* Survey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Survey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A3BD152BBC2A9D00C07B3F /* SurveyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyApp.swift; sourceTree = "<group>"; };
 		94A3BD172BBC2A9D00C07B3F /* SurveyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyView.swift; sourceTree = "<group>"; };
@@ -83,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9487F66B2BBE7CAC00D311C6 /* PreviewSnapshots in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9487F66D2BBE7CAC00D311C6 /* PreviewSnapshotsTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +165,7 @@
 				9432EF5B2BBC43AC00EB6F25 /* GlobalConstants.swift */,
 				9432EF622BBC4A6E00EB6F25 /* MockConstants.swift */,
 				9432EF642BBD2DFD00EB6F25 /* LocalizableConstants.swift */,
+				9487F6722BBE87C700D311C6 /* IdentifierConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -241,7 +259,11 @@
 		94A3BD252BBC2A9E00C07B3F /* SurveyTests */ = {
 			isa = PBXGroup;
 			children = (
+				9487F6672BBD9E8400D311C6 /* MockNetworkManager.swift */,
+				9487F6632BBD9C0300D311C6 /* ModelsTests.swift */,
+				9487F66E2BBE7E7F00D311C6 /* SnapshotsTests.swift */,
 				94A3BD262BBC2A9E00C07B3F /* SurveyTests.swift */,
+				9487F6652BBD9D8900D311C6 /* ViewModelsTests.swift */,
 			);
 			path = SurveyTests;
 			sourceTree = "<group>";
@@ -251,6 +273,7 @@
 			children = (
 				94A3BD302BBC2A9E00C07B3F /* SurveyUITests.swift */,
 				94A3BD322BBC2A9E00C07B3F /* SurveyUITestsLaunchTests.swift */,
+				9487F6702BBE865B00D311C6 /* NavigationUITests.swift */,
 			);
 			path = SurveyUITests;
 			sourceTree = "<group>";
@@ -271,6 +294,9 @@
 			dependencies = (
 			);
 			name = Survey;
+			packageProductDependencies = (
+				9487F66A2BBE7CAC00D311C6 /* PreviewSnapshots */,
+			);
 			productName = Survey;
 			productReference = 94A3BD122BBC2A9D00C07B3F /* Survey.app */;
 			productType = "com.apple.product-type.application";
@@ -289,6 +315,9 @@
 				94A3BD242BBC2A9E00C07B3F /* PBXTargetDependency */,
 			);
 			name = SurveyTests;
+			packageProductDependencies = (
+				9487F66C2BBE7CAC00D311C6 /* PreviewSnapshotsTesting */,
+			);
 			productName = SurveyTests;
 			productReference = 94A3BD222BBC2A9E00C07B3F /* SurveyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -343,6 +372,9 @@
 				Base,
 			);
 			mainGroup = 94A3BD092BBC2A9C00C07B3F;
+			packageReferences = (
+				9487F6692BBE7CAC00D311C6 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */,
+			);
 			productRefGroup = 94A3BD132BBC2A9D00C07B3F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -392,6 +424,7 @@
 				9432EF782BBD4E6000EB6F25 /* Toast.swift in Sources */,
 				9432EF5C2BBC43AC00EB6F25 /* GlobalConstants.swift in Sources */,
 				9432EF4D2BBC357700EB6F25 /* Question.swift in Sources */,
+				9487F6742BBE882700D311C6 /* IdentifierConstants.swift in Sources */,
 				9432EF762BBD424000EB6F25 /* ToastView.swift in Sources */,
 				9432EF572BBC37F300EB6F25 /* QuestionsView.swift in Sources */,
 				9432EF652BBD2DFD00EB6F25 /* LocalizableConstants.swift in Sources */,
@@ -410,7 +443,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9487F6662BBD9D8900D311C6 /* ViewModelsTests.swift in Sources */,
 				94A3BD272BBC2A9E00C07B3F /* SurveyTests.swift in Sources */,
+				9487F6682BBD9E8400D311C6 /* MockNetworkManager.swift in Sources */,
+				9487F66F2BBE7E7F00D311C6 /* SnapshotsTests.swift in Sources */,
+				9487F6642BBD9C0300D311C6 /* ModelsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,7 +455,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9487F6752BBE8A6B00D311C6 /* IdentifierConstants.swift in Sources */,
 				94A3BD332BBC2A9E00C07B3F /* SurveyUITestsLaunchTests.swift in Sources */,
+				9487F6712BBE865B00D311C6 /* NavigationUITests.swift in Sources */,
 				94A3BD312BBC2A9E00C07B3F /* SurveyUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -745,6 +784,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9487F6692BBE7CAC00D311C6 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/doordash-oss/swiftui-preview-snapshots";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9487F66A2BBE7CAC00D311C6 /* PreviewSnapshots */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9487F6692BBE7CAC00D311C6 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
+			productName = PreviewSnapshots;
+		};
+		9487F66C2BBE7CAC00D311C6 /* PreviewSnapshotsTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9487F6692BBE7CAC00D311C6 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
+			productName = PreviewSnapshotsTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 94A3BD0A2BBC2A9C00C07B3F /* Project object */;
 }

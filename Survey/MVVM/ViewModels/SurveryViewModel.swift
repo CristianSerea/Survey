@@ -37,8 +37,12 @@ class SurveyViewModel: ObservableObject {
         currentQuestionIndex > .zero
     }
     
-    private let networkManager = NetworkManager.shared
+    private let networkManager: NetworkManagerProtocol
     private var cancellables = Set<AnyCancellable>()
+    
+    init(networkManager: NetworkManagerProtocol = NetworkManager.shared) {
+        self.networkManager = networkManager
+    }
 }
 
 extension SurveyViewModel {
@@ -61,7 +65,7 @@ extension SurveyViewModel {
 
 extension SurveyViewModel {
     func fetchQuestions(completion: @escaping (Result<Void, Error>) -> Void) {
-        networkManager.fetchData(from: Request.fetchQuestions.url)
+        networkManager.fetchData(from: Request.fetchQuestions.url, method: .GET, body: nil)
             .sink { sinkCompletion in
                 switch sinkCompletion {
                 case .finished:

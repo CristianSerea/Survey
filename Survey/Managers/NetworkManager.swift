@@ -10,7 +10,21 @@ import Combine
 
 typealias ReturnedPublisher<T> = AnyPublisher<T, Error>
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func fetchData<T: Decodable>(from url: URL,
+                                 method: HTTPMethod,
+                                 body: Data?) -> ReturnedPublisher<T>
+}
+
+extension NetworkManagerProtocol {
+    func fetchData<T: Decodable>(from url: URL,
+                                 method: HTTPMethod = .GET,
+                                 body: Data? = nil) -> ReturnedPublisher<T> {
+        return Empty<T, Error>().eraseToAnyPublisher()
+    }
+}
+
+class NetworkManager: NetworkManagerProtocol {
     static let shared = NetworkManager()
     
     func fetchData<T: Decodable>(from url: URL, 

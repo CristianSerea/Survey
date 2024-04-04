@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct ToastView: View {
     let toast: Toast
@@ -117,7 +118,17 @@ extension View {
     }
 }
 
-#Preview {
-    let toast = Toast(toastStyle: .failure, title: LocalizableConstants.surveyViewFailure)
-    return ToastView(toast: toast)
+struct ToastView_Previews: PreviewProvider {
+    static var previews: some View {
+        previewSnapshots.previews.previewLayout(.sizeThatFits)
+    }
+    
+    static var previewSnapshots: PreviewSnapshots<(ToastStyle, String)> {
+        PreviewSnapshots(configurations: [
+            .init(name: "ToastView failure", state: (.failure, LocalizableConstants.questionsViewFailure)),
+            .init(name: "ToastView success", state: (.success, LocalizableConstants.questionsViewSuccess))
+        ], configure: { state in
+            ToastView(toast: Toast(toastStyle: state.0, title: state.1))
+        })
+    }
 }

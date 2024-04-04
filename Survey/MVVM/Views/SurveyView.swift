@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct SurveyView: View {
     @StateObject private var surveyViewModel = SurveyViewModel()
@@ -22,17 +23,20 @@ struct SurveyView: View {
                     .font(.title)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .foregroundStyle(.accent)
+                    .accessibilityIdentifier(IdentifierConstants.surveyViewWelcome)
                 
                 Text(LocalizableConstants.surveyViewDescription)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityIdentifier(IdentifierConstants.surveyViewDescription)
                 
                 LoadingButton(isLoading: $isFetchingQuestions, 
                               text: LocalizableConstants.surveyViewStartSurvey,
                               action: {
                     fetchQuestions()
                 })
+                .accessibilityIdentifier(IdentifierConstants.surveyViewStartSurvery)
                 
                 Spacer()
             }
@@ -68,8 +72,18 @@ struct SurveyView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        SurveyView()
+struct SurveyView_Previews: PreviewProvider {
+    static var previews: some View {
+        previewSnapshots.previews.previewLayout(.sizeThatFits)
+    }
+    
+    static var previewSnapshots: PreviewSnapshots<Any?> {
+        PreviewSnapshots(configurations: [
+            .init(name: "SurveyView", state: nil),
+        ], configure: { _ in
+            NavigationStack {
+                SurveyView()
+            }
+        })
     }
 }

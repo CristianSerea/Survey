@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct LoadingButton: View {
     @Binding var isLoading: Bool
@@ -30,6 +31,7 @@ struct LoadingButton: View {
                     ProgressView()
                         .tint(.white)
                         .padding(.trailing)
+                        .accessibilityIdentifier(IdentifierConstants.loadingButtonProgressView)
                 }
             }
             .padding()
@@ -41,8 +43,17 @@ struct LoadingButton: View {
     }
 }
 
-#Preview {
-    return LoadingButton(isLoading: .constant(false),
-                         text: LocalizableConstants.surveyViewStartSurvey, 
-                         action: {})
+struct LoadingButton_Previews: PreviewProvider {
+    static var previews: some View {
+        previewSnapshots.previews.previewLayout(.sizeThatFits)
+    }
+    
+    static var previewSnapshots: PreviewSnapshots<Bool> {
+        PreviewSnapshots(configurations: [
+            .init(name: "LoadingButton without loading visible", state: false),
+            .init(name: "LoadingButton with loading visible", state: true)
+        ], configure: { state in
+            LoadingButton(isLoading: .constant(state), text: LocalizableConstants.surveyViewStartSurvey, action: {})
+        })
+    }
 }

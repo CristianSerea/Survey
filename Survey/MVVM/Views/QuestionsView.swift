@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct QuestionsView: View {
     @Environment(\.dismiss) var dismiss
@@ -29,6 +30,7 @@ struct QuestionsView: View {
                     .font(.title2)
                     .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     .foregroundStyle(.accent)
+                    .accessibilityIdentifier(IdentifierConstants.questionsViewQuestion)
                 
                 TextField(LocalizableConstants.questionsViewType, text: $text)
                     .fontWeight(.medium)
@@ -38,6 +40,7 @@ struct QuestionsView: View {
                     .clipShape(RoundedRectangle(cornerRadius: GlobalConstants.Layout.marginOffset))
                     .focused($isFocused)
                     .disabled(surveyViewModel.isCurrentQuestionAlreadySubmitted)
+                    .accessibilityIdentifier(IdentifierConstants.questionsViewTextField)
                 
                 let text = surveyViewModel.isCurrentQuestionAlreadySubmitted ? LocalizableConstants.questionsViewAlreadySubmitted : LocalizableConstants.questionsViewSubmitAnswer
                 let isDisabled = surveyViewModel.isCurrentQuestionAlreadySubmitted || !isTextValid
@@ -47,6 +50,7 @@ struct QuestionsView: View {
                               action: {
                     submitQuestion()
                 })
+                .accessibilityIdentifier(IdentifierConstants.questionsViewSubmitQuestion)
                 
                 Spacer()
             }
@@ -101,6 +105,7 @@ struct QuestionsView: View {
                 .foregroundColor(surveyViewModel.canGoToPreviousQuestion ? .accent : .disabled)
         })
         .disabled(!surveyViewModel.canGoToPreviousQuestion)
+        .accessibilityIdentifier(IdentifierConstants.questionsViewPrevious)
     }
     
     var nextButton: some View {
@@ -113,6 +118,7 @@ struct QuestionsView: View {
                 .foregroundColor(surveyViewModel.canGoToNextQuestion ? .accent : .disabled)
         })
         .disabled(!surveyViewModel.canGoToNextQuestion)
+        .accessibilityIdentifier(IdentifierConstants.questionsViewNext)
     }
     
     private func submitQuestion() {
@@ -141,10 +147,24 @@ struct QuestionsView: View {
     }
 }
 
-#Preview {
-    let surveyViewModel = SurveyViewModel()
-    surveyViewModel.questions = MockConstants.questions
-    return NavigationStack {
-        QuestionsView(surveyViewModel: surveyViewModel)
+struct QuestionsView_Previews: PreviewProvider {
+    static var previews: some View {
+        previewSnapshots.previews.previewLayout(.sizeThatFits)
+    }
+    
+    static var previewSnapshots: PreviewSnapshots<SurveyViewModel> {
+        PreviewSnapshots(configurations: [
+            .init(name: "QuestionsView", state: state),
+        ], configure: { state in
+            NavigationStack {
+                QuestionsView(surveyViewModel: state)
+            }
+        })
+    }
+    
+    static var state: SurveyViewModel {
+        let surveyViewModel = SurveyViewModel()
+        surveyViewModel.questions = MockConstants.questions
+        return surveyViewModel
     }
 }

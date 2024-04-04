@@ -22,6 +22,10 @@ final class SnapshotsTests: XCTestCase {
         QuestionsView_Previews.previewSnapshots.assertSnapshots()
     }
     
+    func testQuestionViewSnapshots() {
+        QuestionView_Previews.previewSnapshots.assertSnapshots()
+    }
+    
     func testSurveyViewSnapshots() {
         SurveyView_Previews.previewSnapshots.assertSnapshots()
     }
@@ -38,6 +42,10 @@ extension SnapshotsTests {
     
     func testQuestionsViewSnapshotsiPhone13Pro() {
         QuestionsView_Previews.previewSnapshots.assertSnapshots(as: .image(layout: .device(config: .iPhone13Pro)))
+    }
+    
+    func testQuestionViewSnapshotsiPhone13Pro() {
+        QuestionView_Previews.previewSnapshots.assertSnapshots(as: .image(layout: .device(config: .iPhone13Pro)))
     }
     
     func testSurveyViewSnapshotsiPhone13Pro() {

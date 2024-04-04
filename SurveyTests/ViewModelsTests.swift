@@ -53,6 +53,30 @@ final class ViewModelsTests: XCTestCase {
         viewModel.currentQuestionIndex = .zero
         viewModel.goToNextQuestion()
         XCTAssertEqual(viewModel.currentQuestionIndex, 1)
+    } 
+    
+    func testGetQuestionIndex() {
+        let question1 = Question(id: 1, question: "Question 1")
+        let question2 = Question(id: 2, question: "Question 2")
+        viewModel.questions = [question1, question2]
+        
+        let index1 = viewModel.getQuestionIndex(id: 1)
+        let index2 = viewModel.getQuestionIndex(id: 2)
+        let index3 = viewModel.getQuestionIndex(id: 3)
+        
+        XCTAssertEqual(index1, 0)
+        XCTAssertEqual(index2, 1)
+        XCTAssertNil(index3)
+    }
+    
+    func testGetAnswer() {
+        let question = Question(id: 1, question: "Question 1")
+        let answer = Answer(questionId: question.id, answer: "Answer 1")
+        viewModel.submittedAnswers = [answer]
+        
+        let retrievedAnswer = viewModel.getAnswer(question: question)
+        XCTAssertNotNil(retrievedAnswer)
+        XCTAssertEqual(retrievedAnswer, answer)
     }
 }
 

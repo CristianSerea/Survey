@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Question: Codable, Identifiable {
+struct Question: Codable, Identifiable, Hashable {
     let id: Int
     let question: String
 }

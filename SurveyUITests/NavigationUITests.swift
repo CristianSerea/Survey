@@ -47,7 +47,7 @@ extension NavigationUITests {
         surveyViewStartSurvery.tap()
         
         // The navigation to the next screen is performed very quick, so somtimes the button state is already reseted
-        if (navigationTitle == app.navigationBars.element.staticTexts.firstMatch.label) {
+        if navigationTitle == app.navigationBars.element.staticTexts.firstMatch.label {
             let loadingButtonProgressView = surveyViewStartSurvery.activityIndicators[IdentifierConstants.loadingButtonProgressView]
             XCTAssertTrue(loadingButtonProgressView.exists)
             XCTAssertFalse(surveyViewStartSurvery.isEnabled)
@@ -70,6 +70,7 @@ extension NavigationUITests {
         
         let questionsViewPrevious = app.buttons[IdentifierConstants.questionsViewPrevious]
         let questionsViewNext = app.buttons[IdentifierConstants.questionsViewNext]
+        let questionsViewQuestionsSubmitted = app.staticTexts[IdentifierConstants.questionsViewQuestionsSubmitted]
         let questionsViewQuestion = app.staticTexts[IdentifierConstants.questionsViewQuestion]
         let questionsViewTextField = app.textFields[IdentifierConstants.questionsViewTextField]
         let questionsViewSubmitQuestion = app.buttons[IdentifierConstants.questionsViewSubmitQuestion]
@@ -80,6 +81,7 @@ extension NavigationUITests {
         if result == .timedOut {
             XCTAssertTrue(questionsViewPrevious.exists)
             XCTAssertTrue(questionsViewNext.exists)
+            XCTAssertTrue(questionsViewQuestionsSubmitted.exists)
             XCTAssertTrue(questionsViewQuestion.exists)
             XCTAssertTrue(questionsViewTextField.exists)
             XCTAssertTrue(questionsViewSubmitQuestion.exists)
@@ -130,7 +132,7 @@ extension NavigationUITests {
         
         if result == .timedOut {
             // Check if submit answer request failed by comparing navigation titles
-            if (navigationTitle == app.navigationBars.element.staticTexts.firstMatch.label) {
+            if navigationTitle == app.navigationBars.element.staticTexts.firstMatch.label {
                 XCTAssertEqual(questionsViewQuestion.label, questionsViewQuestionLabel)
                 XCTAssertEqual(questionsViewTextField.value as? String, questionsViewTextFieldValue)
                 XCTAssertTrue(questionsViewSubmitQuestion.isEnabled)

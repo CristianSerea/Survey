@@ -14,6 +14,7 @@ struct IdentifierConstants {
     static let loadingButtonProgressView = "LoadingButton.ProgressView"
     static let questionsViewPrevious = "QuestionsView.Previous"
     static let questionsViewNext = "QuestionsView.Next"
+    static let questionsViewQuestionsSubmitted = "QuestionsView.QuestionsSubmitted"
     static let questionsViewQuestion = "QuestionsView.Question"
     static let questionsViewTextField = "QuestionsView.TextField"
     static let questionsViewSubmitQuestion = "QuestionsView.SubmitQuestion"

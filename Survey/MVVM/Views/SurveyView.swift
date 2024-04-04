@@ -12,7 +12,7 @@ struct SurveyView: View {
     @StateObject private var surveyViewModel = SurveyViewModel()
     @State private var isQuestionsViewPresented: Bool = false
     @State private var isFetchingQuestions: Bool = false
-    @State private var toast: Toast? = nil
+    @State private var toast: Toast?
     
     var body: some View {
         ZStack {

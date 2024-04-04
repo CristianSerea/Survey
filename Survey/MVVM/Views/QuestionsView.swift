@@ -11,59 +11,63 @@ import PreviewSnapshots
 struct QuestionsView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var surveyViewModel: SurveyViewModel
-    @State private var isAlertPresented = false
-    @State private var isSubmitingQuestion: Bool = false
-    @State private var toast: Toast? = nil
-    @State private var text: String = ""
-    @FocusState private var isFocused: Bool
-    
-    var isTextValid: Bool {
-        !text.isEmpty
-    }
+    @State private var canAnimate: Bool = false
+    @State private var isAlertPresented: Bool = false
+    @State private var isSubmittingQuestion: Bool = false
+    @State private var toast: Toast?
+    @State private var currentQuestionId: Int = .zero
+    @State private var answer: Answer?
+    @FocusState private var focused: Int?
     
     var body: some View {
         ZStack {
             Color.background.ignoresSafeArea()
             
-            VStack(spacing: GlobalConstants.Layout.marginOffset * 2) {
-                Text(surveyViewModel.currentQuestion.question)
-                    .font(.title2)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    .foregroundStyle(.accent)
-                    .accessibilityIdentifier(IdentifierConstants.questionsViewQuestion)
-                
-                TextField(LocalizableConstants.questionsViewType, text: $text)
+            VStack(spacing: .zero) {
+                Text(LocalizableConstants.questionsViewQuestionsSubmitted + " " + "\(surveyViewModel.submittedAnswers.count)")
                     .fontWeight(.medium)
-                    .frame(height: GlobalConstants.Layout.defaultHeight)
-                    .padding(.horizontal)
-                    .background(Color(.secondarySystemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: GlobalConstants.Layout.marginOffset))
-                    .focused($isFocused)
-                    .disabled(surveyViewModel.isCurrentQuestionAlreadySubmitted)
-                    .accessibilityIdentifier(IdentifierConstants.questionsViewTextField)
+                    .padding(.horizontal, GlobalConstants.Layout.marginOffset)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .accessibilityIdentifier(IdentifierConstants.questionsViewQuestionsSubmitted)
                 
-                let text = surveyViewModel.isCurrentQuestionAlreadySubmitted ? LocalizableConstants.questionsViewAlreadySubmitted : LocalizableConstants.questionsViewSubmitAnswer
-                let isDisabled = surveyViewModel.isCurrentQuestionAlreadySubmitted || !isTextValid
-                LoadingButton(isLoading: $isSubmitingQuestion,
-                              isDisabled: isDisabled,
-                              text: text,
-                              action: {
-                    submitQuestion()
-                })
-                .accessibilityIdentifier(IdentifierConstants.questionsViewSubmitQuestion)
-                
-                Spacer()
+                TabView(selection: $currentQuestionId) {
+                    ForEach(surveyViewModel.questions, id: \.self) { question in
+                        QuestionView(question: question,
+                                     answer: surveyViewModel.getAnswer(question: question),
+                                     focused: $focused,
+                                     submitQuestion: submitQuestion,
+                                     surveyViewModel: surveyViewModel,
+                                     isSubmittingQuestion: $isSubmittingQuestion)
+                        .tag(question.id)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.top, GlobalConstants.Layout.marginOffset)
+                .tabViewStyle(PageTabViewStyle())
+                .animation(canAnimate ? .default : .none, value: currentQuestionId)
+                .transition(.slide)
+                .onChange(of: currentQuestionId) {
+                    guard let currentQuestionIndex = surveyViewModel.getQuestionIndex(id: currentQuestionId) else {
+                        return
+                    }
+                    
+                    guard currentQuestionIndex != surveyViewModel.currentQuestionIndex else {
+                        return
+                    }
+                     
+                    surveyViewModel.currentQuestionIndex = currentQuestionIndex
+                    reset()
+                }
             }
-            .frame(maxWidth: .infinity)
-            .padding(.top, GlobalConstants.Layout.marginOffset)
-            .padding(GlobalConstants.Layout.marginOffset)
         }
         .toastView(toast: $toast, onDismiss: {
             if surveyViewModel.isSurveyCompleted {
                 isAlertPresented.toggle()
             }
         }, onRetryTapped: {
-            submitQuestion()
+            if let text = answer?.answer {
+                submitQuestion(text: text)
+            }
         })
         .alert(isPresented: $isAlertPresented) {
             alert
@@ -80,11 +84,20 @@ struct QuestionsView: View {
                 }
             }
         }
+        .onAppear {
+            currentQuestionId = surveyViewModel.currentQuestion.id
+            
+            DispatchQueue.main.async {
+                canAnimate = true
+            }
+        }
         .onDisappear {
             surveyViewModel.reset()
         }
     }
-    
+}
+
+extension QuestionsView {
     var alert: Alert {
         Alert(
             title: Text(LocalizableConstants.alertViewCongratulations),
@@ -98,8 +111,7 @@ struct QuestionsView: View {
     var previousButton: some View {
         Button(action: {
             surveyViewModel.goToPreviousQuestion()
-            text = surveyViewModel.currentAnswer?.answer ?? ""
-            toast = nil
+            reset()
         }, label: {
             Text(LocalizableConstants.questionsViewPrevious)
                 .foregroundColor(surveyViewModel.canGoToPreviousQuestion ? .accent : .disabled)
@@ -111,8 +123,7 @@ struct QuestionsView: View {
     var nextButton: some View {
         Button(action: {
             surveyViewModel.goToNextQuestion()
-            text = surveyViewModel.currentAnswer?.answer ?? ""
-            toast = nil
+            reset()
         }, label: {
             Text(LocalizableConstants.questionsViewNext)
                 .foregroundColor(surveyViewModel.canGoToNextQuestion ? .accent : .disabled)
@@ -121,29 +132,47 @@ struct QuestionsView: View {
         .accessibilityIdentifier(IdentifierConstants.questionsViewNext)
     }
     
-    private func submitQuestion() {
-        isSubmitingQuestion.toggle()
+    private func submitQuestion(text: String) {
+        isSubmittingQuestion.toggle()
         
-        let answer = Answer(questionId: surveyViewModel.currentQuestion.id, answer: text)
-        surveyViewModel.submitQuestion(answer: answer) { result in
-            isSubmitingQuestion.toggle()
+        let questionAnswer = Answer(questionId: surveyViewModel.currentQuestion.id, answer: text)
+        surveyViewModel.submitQuestion(answer: questionAnswer) { result in
+            isSubmittingQuestion.toggle()
             
             switch result {
             case .success:
-                surveyViewModel.submittedAnswers.append(answer)
+                surveyViewModel.submittedAnswers.append(questionAnswer)
                 toast = Toast(toastStyle: .success,
                               title: LocalizableConstants.questionsViewSuccess)
                 if surveyViewModel.canGoToNextQuestion && !surveyViewModel.isSurveyCompleted {
                     surveyViewModel.goToNextQuestion()
-                    text = surveyViewModel.currentAnswer?.answer ?? ""
                 }
+                reset()
                 
             case .failure(let failure):
+                answer = questionAnswer
                 toast = Toast(toastStyle: .failure,
                               title: LocalizableConstants.questionsViewFailure,
                               message: failure.localizedDescription)
             }
         }
+    }
+}
+
+extension QuestionsView {
+    func reset() {
+        currentQuestionId = surveyViewModel.currentQuestion.id
+        answer = nil
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            focused = getFocused()
+        }
+    }
+    
+    func getFocused() -> Int? {
+        let question = surveyViewModel.currentQuestion
+        let answer = surveyViewModel.getAnswer(question: question)
+        return answer == nil ? question.id : nil
     }
 }
 

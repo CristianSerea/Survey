@@ -7,8 +7,8 @@
 */
 
 "SurveyView.Survey" = "Survey App";
-"SurveyView.Welcome" = "Welcome to Survey app";
-"SurveyView.Description" = "This app contains 2 screens and fetches survey's questions from an API.";
+"SurveyView.Welcome" = "Welcome to Survey App";
+"SurveyView.Description" = "This Survey App allows users to participate in a survey by answering a series of questions.\n\nIt consists of two screens:\n• an initial onboarding screen\n• and a questions screen where users can navigate through and answer survey questions";
 "SurveyView.StartSurvey" = "Start survey";
 "SurveyView.Failure" = "There was an error while fetching your survey questions";
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Answer: Encodable {
+struct Answer: Encodable, Equatable {
     let questionId: Int
     let answer: String
     

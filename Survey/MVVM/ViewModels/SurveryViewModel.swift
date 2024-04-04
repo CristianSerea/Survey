@@ -25,10 +25,6 @@ class SurveyViewModel: ObservableObject {
         questions.count == submittedAnswers.count
     }
     
-    var isCurrentQuestionAlreadySubmitted: Bool {
-        submittedAnswers.first(where: { questions[currentQuestionIndex].id == $0.questionId }) != nil
-    }
-    
     var canGoToNextQuestion: Bool {
         currentQuestionIndex < questions.count - 1
     }
@@ -54,6 +50,14 @@ extension SurveyViewModel {
 }
 
 extension SurveyViewModel {
+    func getQuestionIndex(id: Int) -> Int? {
+        questions.firstIndex(where: { $0.id == id })
+    }
+    
+    func getAnswer(question: Question) -> Answer? {
+        submittedAnswers.first(where: { $0.questionId == question.id })
+    }
+    
     func goToPreviousQuestion() {
         currentQuestionIndex -= 1
     }
@@ -92,7 +96,7 @@ extension SurveyViewModel {
                         completion(.failure(error))
                     }
                 } receiveValue: { (data: Data) in
-                    print("Response data: \(data)")
+                    debugPrint("Response data: \(data)")
                 }
                 .store(in: &cancellables)
         } catch {

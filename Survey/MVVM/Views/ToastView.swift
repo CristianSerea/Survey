@@ -123,12 +123,14 @@ struct ToastView_Previews: PreviewProvider {
         previewSnapshots.previews.previewLayout(.sizeThatFits)
     }
     
-    static var previewSnapshots: PreviewSnapshots<(ToastStyle, String)> {
+    static var previewSnapshots: PreviewSnapshots<Toast> {
         PreviewSnapshots(configurations: [
-            .init(name: "ToastView failure", state: (.failure, LocalizableConstants.questionsViewFailure)),
-            .init(name: "ToastView success", state: (.success, LocalizableConstants.questionsViewSuccess))
+            .init(name: "ToastView failure", 
+                  state: Toast(toastStyle: .failure, title: LocalizableConstants.questionsViewFailure)),
+            .init(name: "ToastView success",
+                  state: Toast(toastStyle: .success, title: LocalizableConstants.questionsViewSuccess))
         ], configure: { state in
-            ToastView(toast: Toast(toastStyle: state.0, title: state.1))
+            ToastView(toast: state)
         })
     }
 }
